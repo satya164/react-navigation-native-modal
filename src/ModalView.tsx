@@ -22,22 +22,28 @@ export default function ModalView({ state, navigation, descriptors }: Props) {
   return (
     <NavigationHelpersContext.Provider value={navigation}>
       <View style={styles.container}>
-        {state.routes.map((route, index) => {
+        {state.routes.reduceRight<JSX.Element>((acc, route, index) => {
           const descriptor = descriptors[route.key];
+          const {
+            animationType = 'slide',
+            presentationStyle = 'fullScreen',
+            ...options
+          } = descriptor.options;
 
           if (index === 0) {
             return (
-              <View key={route.key} style={StyleSheet.absoluteFill}>
+              <View style={StyleSheet.absoluteFill}>
                 {descriptor.render()}
+                {acc}
               </View>
             );
           }
 
           return (
             <Modal
-              key={route.key}
-              animationType="slide"
-              presentationStyle="pageSheet"
+              {...options}
+              animationType={animationType}
+              presentationStyle={presentationStyle}
               onRequestClose={() => {
                 navigation.dispatch({
                   ...StackActions.pop(),
@@ -45,11 +51,13 @@ export default function ModalView({ state, navigation, descriptors }: Props) {
                   target: state.key,
                 });
               }}
+              visible
             >
               {descriptor.render()}
+              {acc}
             </Modal>
           );
-        })}
+        }, <></>)}
       </View>
     </NavigationHelpersContext.Provider>
   );

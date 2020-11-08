@@ -1,3 +1,4 @@
+import type { Modal } from 'react-native';
 import type {
   Route,
   ParamListBase,
@@ -17,9 +18,24 @@ export type Scene = {
 
 export type ModalNavigationConfig = {};
 
-export type ModalNavigationOptions = {};
+export type ModalNavigationOptions = React.ComponentProps<typeof Modal>;
 
-export type ModalNavigationEventMap = {};
+export type ModalNavigationEventMap = {
+  /**
+   * Event which fires when a modal is shown.
+   */
+  show: { data: undefined };
+  /**
+   * Event which fires when a modal is dismissed.
+   */
+  dismiss: { data: undefined };
+  /**
+   * Event which fires when the orientation changes while the modal is being displayed.
+   * The orientation provided is only 'portrait' or 'landscape'.
+   * This event also fires on initial render, regardless of the current orientation.
+   */
+  orientationChange: { data: undefined };
+};
 
 export type ModalNavigationHelpers = NavigationHelpers<
   ParamListBase,
