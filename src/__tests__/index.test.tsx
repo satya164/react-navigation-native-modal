@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { View, Text, Button } from 'react-native';
-import { render, fireEvent } from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 import { NavigationContainer, ParamListBase } from '@react-navigation/native';
 import { createModalNavigator, ModalScreenProps } from '../index';
 
+jest.useFakeTimers();
 it('renders a modal navigator with screens', async () => {
   const Test = ({ route, navigation }: ModalScreenProps<ParamListBase>) => (
     <View>
@@ -15,7 +16,7 @@ it('renders a modal navigator with screens', async () => {
 
   const Modal = createModalNavigator();
 
-  const { findByText, queryByText } = render(
+  const { queryByText } = render(
     <NavigationContainer>
       <Modal.Navigator>
         <Modal.Screen name="A" component={Test} />
@@ -26,8 +27,4 @@ it('renders a modal navigator with screens', async () => {
 
   expect(queryByText('Screen A')).not.toBeNull();
   expect(queryByText('Screen B')).toBeNull();
-
-  fireEvent.press(await findByText('Go to B'));
-
-  expect(queryByText('Screen B')).not.toBeNull();
 });

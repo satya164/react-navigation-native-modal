@@ -41,6 +41,8 @@ Then you can navigate to any screen to show it as a modal:
 navigation.navigate('Profile');
 ```
 
+The first screen in the stack is always rendered as a normal screen and not as a modal. But any subsequent screens will be rendered as modals.
+
 ### Options
 
 All of the [props available on `Modal` component](https://reactnative.dev/docs/modal#props) can be specified in [options](https://reactnavigation.org/docs/screen-options) to configure the screens in the navigator, except `visible`, `onDismiss`, `onOrientationChange`, `onRequestClose` and `onShow`.

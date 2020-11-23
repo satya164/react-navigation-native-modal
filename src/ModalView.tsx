@@ -23,6 +23,7 @@ export default function ModalView({ state, navigation, descriptors }: Props) {
     <NavigationHelpersContext.Provider value={navigation}>
       <View style={styles.container}>
         {state.routes.reduceRight<JSX.Element>((acc, route, index) => {
+          const focused = index === state.index;
           const descriptor = descriptors[route.key];
           const {
             animationType = 'slide',
@@ -30,13 +31,21 @@ export default function ModalView({ state, navigation, descriptors }: Props) {
             ...options
           } = descriptor.options;
 
+          const element = (
+            <View
+              style={StyleSheet.absoluteFill}
+              accessibilityElementsHidden={!focused}
+              importantForAccessibility={
+                focused ? 'auto' : 'no-hide-descendants'
+              }
+            >
+              {descriptor.render()}
+              {acc}
+            </View>
+          );
+
           if (index === 0) {
-            return (
-              <View style={StyleSheet.absoluteFill}>
-                {descriptor.render()}
-                {acc}
-              </View>
-            );
+            return element;
           }
 
           return (
@@ -53,7 +62,7 @@ export default function ModalView({ state, navigation, descriptors }: Props) {
               }}
               visible
             >
-              {descriptor.render()}
+              {element}
               {acc}
             </Modal>
           );
