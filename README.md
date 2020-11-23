@@ -8,6 +8,10 @@ React Navigation integration for React Native's Modal component. This navigator 
 
 > Currently the `presentationStyle` of `pageSheet` and `formSheet` are not usable on iOS because it's impossible to detect when they are closed via gesture. See https://github.com/facebook/react-native/issues/29319
 
+## Demo
+
+<a href="https://raw.githubusercontent.com/satya164/react-navigation-native-modal/main/assets/demo.mp4"><img src="https://raw.githubusercontent.com/satya164/react-navigation-native-modal/main/assets/demo.gif" width="360"></a>
+
 ## Installation
 
 ```sh

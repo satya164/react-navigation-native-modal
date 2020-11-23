@@ -23,7 +23,7 @@ function Home({ navigation }: ModalScreenProps<ModalParamList, 'Home'>) {
 
 function First({ navigation }: ModalScreenProps<ModalParamList, 'First'>) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: 'papayawhip' }]}>
       <Button title="Push Second" onPress={() => navigation.push('Second')} />
       <Button title="Go back" onPress={() => navigation.goBack()} />
       <Button title="Pop to top" onPress={() => navigation.popToTop()} />
@@ -33,7 +33,7 @@ function First({ navigation }: ModalScreenProps<ModalParamList, 'First'>) {
 
 function Second({ navigation }: ModalScreenProps<ModalParamList, 'Second'>) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: 'lavender' }]}>
       <Button title="Push First" onPress={() => navigation.push('First')} />
       <Button title="Go back" onPress={() => navigation.goBack()} />
       <Button title="Pop to top" onPress={() => navigation.popToTop()} />
