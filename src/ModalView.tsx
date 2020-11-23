@@ -32,16 +32,18 @@ export default function ModalView({ state, navigation, descriptors }: Props) {
           } = descriptor.options;
 
           const element = (
-            <View
-              style={StyleSheet.absoluteFill}
-              accessibilityElementsHidden={!focused}
-              importantForAccessibility={
-                focused ? 'auto' : 'no-hide-descendants'
-              }
-            >
-              {descriptor.render()}
+            <>
+              <View
+                style={StyleSheet.absoluteFill}
+                accessibilityElementsHidden={!focused}
+                importantForAccessibility={
+                  focused ? 'auto' : 'no-hide-descendants'
+                }
+              >
+                {descriptor.render()}
+              </View>
               {acc}
-            </View>
+            </>
           );
 
           if (index === 0) {
@@ -82,7 +84,6 @@ export default function ModalView({ state, navigation, descriptors }: Props) {
               visible
             >
               {element}
-              {acc}
             </Modal>
           );
         }, <></>)}

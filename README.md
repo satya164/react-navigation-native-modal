@@ -119,6 +119,8 @@ React.useEffect(() => {
 }, [navigation]);
 ```
 
+Only supported on iOS.
+
 ### Helpers
 
 The modal navigator adds the following methods to the navigation prop:
