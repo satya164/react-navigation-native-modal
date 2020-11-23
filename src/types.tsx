@@ -18,7 +18,10 @@ export type Scene = {
 
 export type ModalNavigationConfig = {};
 
-export type ModalNavigationOptions = React.ComponentProps<typeof Modal>;
+export type ModalNavigationOptions = Omit<
+  React.ComponentProps<typeof Modal>,
+  'visible' | 'onDismiss' | 'onOrientationChange' | 'onRequestClose' | 'onShow'
+>;
 
 export type ModalNavigationEventMap = {
   /**
@@ -27,14 +30,16 @@ export type ModalNavigationEventMap = {
   show: { data: undefined };
   /**
    * Event which fires when a modal is dismissed.
+   * Only supported on iOS.
    */
   dismiss: { data: undefined };
   /**
    * Event which fires when the orientation changes while the modal is being displayed.
    * The orientation provided is only 'portrait' or 'landscape'.
    * This event also fires on initial render, regardless of the current orientation.
+   * Only supported on iOS.
    */
-  orientationChange: { data: undefined };
+  orientationChange: { data: { orientation: 'portrait' | 'landscape' } };
 };
 
 export type ModalNavigationHelpers = NavigationHelpers<

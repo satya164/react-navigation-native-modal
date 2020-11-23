@@ -53,6 +53,25 @@ export default function ModalView({ state, navigation, descriptors }: Props) {
               {...options}
               animationType={animationType}
               presentationStyle={presentationStyle}
+              onShow={() =>
+                navigation.emit({
+                  type: 'show',
+                  target: route.key,
+                })
+              }
+              onDismiss={() =>
+                navigation.emit({
+                  type: 'dismiss',
+                  target: route.key,
+                })
+              }
+              onOrientationChange={(e) =>
+                navigation.emit({
+                  type: 'orientationChange',
+                  target: route.key,
+                  data: e.nativeEvent,
+                })
+              }
               onRequestClose={() => {
                 navigation.dispatch({
                   ...StackActions.pop(),

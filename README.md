@@ -95,9 +95,17 @@ React.useEffect(() => {
 }, [navigation]);
 ```
 
+Only supported on iOS.
+
 #### `orientationChange`
 
 This event is fired when the orientation changes while the modal is being displayed and on initial render. Same as the [`onOrientationChange` prop](https://reactnative.dev/docs/modal#onorientationchange).
+
+It receives an object in the `data` property of the event, which contains the key `orientation` with the value `portrait` or `landscape`:
+
+```js
+console.log(e.data) // { orientation: 'portrait' }
+```
 
 Example:
 
