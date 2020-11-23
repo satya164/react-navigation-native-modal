@@ -63,40 +63,6 @@ Example:
 
 The navigator can [emit events](https://reactnavigation.org/docs/navigation-events) on certain actions. Supported events are:
 
-#### `show`
-
-This event is fired when the modal is shown. Same as the [`onShow` prop](https://reactnative.dev/docs/modal#onshow).
-
-Example:
-
-```js
-React.useEffect(() => {
-  const unsubscribe = navigation.addListener('show', (e) => {
-    // Do something
-  });
-
-  return unsubscribe;
-}, [navigation]);
-```
-
-#### `dismiss`
-
-This event is fired when the modal is dismissed. Same as the [`onDismiss` prop](https://reactnative.dev/docs/modal#ondismiss).
-
-Example:
-
-```js
-React.useEffect(() => {
-  const unsubscribe = navigation.addListener('dismiss', (e) => {
-    // Do something
-  });
-
-  return unsubscribe;
-}, [navigation]);
-```
-
-Only supported on iOS.
-
 #### `orientationChange`
 
 This event is fired when the orientation changes while the modal is being displayed and on initial render. Same as the [`onOrientationChange` prop](https://reactnative.dev/docs/modal#onorientationchange).

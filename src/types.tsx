@@ -25,15 +25,6 @@ export type ModalNavigationOptions = Omit<
 
 export type ModalNavigationEventMap = {
   /**
-   * Event which fires when a modal is shown.
-   */
-  show: { data: undefined };
-  /**
-   * Event which fires when a modal is dismissed.
-   * Only supported on iOS.
-   */
-  dismiss: { data: undefined };
-  /**
    * Event which fires when the orientation changes while the modal is being displayed.
    * The orientation provided is only 'portrait' or 'landscape'.
    * This event also fires on initial render, regardless of the current orientation.

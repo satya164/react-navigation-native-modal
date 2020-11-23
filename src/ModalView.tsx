@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { View, Modal, StyleSheet } from 'react-native';
+import { View, Modal, StyleSheet, NativeSyntheticEvent } from 'react-native';
 import {
   NavigationHelpersContext,
   StackNavigationState,
   ParamListBase,
   StackActions,
+  CommonActions,
 } from '@react-navigation/native';
 import type {
   ModalDescriptorMap,
@@ -50,37 +51,53 @@ export default function ModalView({ state, navigation, descriptors }: Props) {
             return element;
           }
 
+          const onOrientationChange = (e: NativeSyntheticEvent<any>) =>
+            navigation.emit({
+              type: 'orientationChange',
+              target: route.key,
+              data: e.nativeEvent,
+            });
+
+          const onOpen = () => {
+            navigation.dispatch((s) => {
+              if (
+                s.routeNames.includes(route.name) &&
+                !s.routes.some((r) => r.key === route.key)
+              ) {
+                // If route isn't present in current state, but was closing, assume that a close animation was cancelled
+                // So we need to add this route back to the state
+                return CommonActions.navigate(route);
+              } else {
+                return CommonActions.reset(s);
+              }
+            });
+          };
+
+          const onClose = () =>
+            navigation.dispatch((s) => {
+              // If a route exists in state, trigger a pop
+              // This will happen in when the route was closed from native side
+              // e.g. When the close animation triggered from a gesture ends
+              if (s.routes.some((r) => r.key === route.key)) {
+                return {
+                  ...StackActions.pop(),
+                  source: route.key,
+                  target: s.key,
+                };
+              } else {
+                return CommonActions.reset(s);
+              }
+            });
+
           return (
             <Modal
               {...options}
               animationType={animationType}
               presentationStyle={presentationStyle}
-              onShow={() =>
-                navigation.emit({
-                  type: 'show',
-                  target: route.key,
-                })
-              }
-              onDismiss={() =>
-                navigation.emit({
-                  type: 'dismiss',
-                  target: route.key,
-                })
-              }
-              onOrientationChange={(e) =>
-                navigation.emit({
-                  type: 'orientationChange',
-                  target: route.key,
-                  data: e.nativeEvent,
-                })
-              }
-              onRequestClose={() => {
-                navigation.dispatch({
-                  ...StackActions.pop(),
-                  source: route.key,
-                  target: state.key,
-                });
-              }}
+              onOrientationChange={onOrientationChange}
+              onShow={onOpen}
+              onDismiss={onClose}
+              onRequestClose={onClose}
               visible
             >
               {element}
