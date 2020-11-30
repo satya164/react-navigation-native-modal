@@ -31,8 +31,11 @@
   },
   "keywords": [
     "react-native",
+    "react-navigation",
     "ios",
-    "android"
+    "android",
+    "expo",
+    "modal"
   ],
   "repository": "https://github.com/satya164/react-navigation-native-modal",
   "author": "Satyajit Sahoo <satyajit.happy@gmail.com> (https://github.com/satya164)",
