@@ -26,11 +26,7 @@ export default function ModalView({ state, navigation, descriptors }: Props) {
         {state.routes.reduceRight<JSX.Element>((acc, route, index) => {
           const focused = index === state.index;
           const descriptor = descriptors[route.key];
-          const {
-            animationType = 'slide',
-            presentationStyle = 'fullScreen',
-            ...options
-          } = descriptor.options;
+          const { animationType = 'slide', ...options } = descriptor.options;
 
           const element = (
             <>
@@ -93,7 +89,6 @@ export default function ModalView({ state, navigation, descriptors }: Props) {
             <Modal
               {...options}
               animationType={animationType}
-              presentationStyle={presentationStyle}
               onOrientationChange={onOrientationChange}
               onShow={onOpen}
               onDismiss={onClose}

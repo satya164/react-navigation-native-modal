@@ -63,6 +63,10 @@ Example:
 />
 ```
 
+Some of the defaults are different from the `Modal` component:
+
+- `animationType` is set to `slide` instead of `none`
+
 ### Events
 
 The navigator can [emit events](https://reactnavigation.org/docs/navigation-events) on certain actions. Supported events are:
