@@ -126,6 +126,12 @@ Pops all of the screens in the modal stack except the first one and navigates to
 navigation.popToTop();
 ```
 
+## Gotchas
+
+The modal navigator is always shown above other navigators since it renders a native modal. This means that if you have a regular stack navigator as the parent of the modal navigator and push a screen in the parent stack, it won't appear above the modal navigator.
+
+So it's a good practice to always have the modal navigator at the root to avoid such issues instead of nesting it.
+
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
