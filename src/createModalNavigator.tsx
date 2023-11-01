@@ -1,19 +1,19 @@
-import * as React from 'react';
 import {
-  useNavigationBuilder,
-  createNavigatorFactory,
-  DefaultNavigatorOptions,
   StackRouter,
-  StackRouterOptions,
-  StackNavigationState,
-  ParamListBase,
-  StackActionHelpers,
+  createNavigatorFactory,
+  useNavigationBuilder,
+  type DefaultNavigatorOptions,
+  type ParamListBase,
+  type StackActionHelpers,
+  type StackNavigationState,
+  type StackRouterOptions,
 } from '@react-navigation/native';
+import * as React from 'react';
 import ModalView from './ModalView';
 import type {
   ModalNavigationConfig,
-  ModalNavigationOptions,
   ModalNavigationEventMap,
+  ModalNavigationOptions,
 } from './types';
 
 type Props = DefaultNavigatorOptions<ModalNavigationOptions> &

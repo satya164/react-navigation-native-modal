@@ -3,7 +3,7 @@ import { StyleSheet, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import {
   createModalNavigator,
-  ModalScreenProps,
+  type ModalScreenProps,
 } from 'react-navigation-native-modal';
 
 type ModalParamList = {
@@ -43,7 +43,7 @@ function Second({ navigation }: ModalScreenProps<ModalParamList, 'Second'>) {
 
 const Modal = createModalNavigator();
 
-export default function App() {
+export function App() {
   return (
     <NavigationContainer>
       <Modal.Navigator>

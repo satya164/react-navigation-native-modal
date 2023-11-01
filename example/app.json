@@ -1,6 +1,6 @@
 {
   "name": "react-navigation-native-modal-example",
-  "displayName": "ReactNavigationNativeModal Example",
+  "displayName": "React Navigation Native Modal Example",
   "expo": {
     "name": "react-navigation-native-modal-example",
     "slug": "react-navigation-native-modal-example",
@@ -17,6 +17,12 @@
     },
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "fa39f722-fcc0-423d-ada0-7fd5901c5b71"
+      }
+    },
+    "owner": "satya164"
   }
 }

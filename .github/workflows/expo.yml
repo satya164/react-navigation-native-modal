@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   publish:
@@ -10,33 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 10.x
+      - name: Setup
+        uses: ./.github/actions/setup
 
       - name: Setup Expo
-        uses: expo/expo-github-action@v5
+        uses: expo/expo-github-action@v8
         with:
-          expo-version: 3.x
-          expo-token: ${{ secrets.EXPO_TOKEN }}
-          expo-cache: true
-
-      - name: Restore yarn cache
-        id: yarn-cache
-        uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: |
-          yarn install --cwd example --frozen-lockfile
-          yarn install --frozen-lockfile
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Publish Expo app
         working-directory: ./example
-        run: expo publish
+        run: eas update --non-interactive --auto

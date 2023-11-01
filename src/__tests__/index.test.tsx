@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { View, Text, Button } from 'react-native';
 import { render } from '@testing-library/react-native';
-import { NavigationContainer, ParamListBase } from '@react-navigation/native';
-import { createModalNavigator, ModalScreenProps } from '../index';
+import {
+  NavigationContainer,
+  type ParamListBase,
+} from '@react-navigation/native';
+import { createModalNavigator, type ModalScreenProps } from '../index';
 
 jest.useFakeTimers();
 it('renders a modal navigator with screens', async () => {
