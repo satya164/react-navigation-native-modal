@@ -7,24 +7,22 @@
   "scripts": {
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web",
     "start": "expo start",
     "test": "jest"
   },
   "dependencies": {
-    "expo": "^38.0.0",
-    "expo-splash-screen": "^0.5.0",
-    "react": "16.11.0",
-    "react-dom": "16.11.0",
-    "react-native": "0.62.2",
-    "react-native-unimodules": "~0.10.1",
-    "react-native-web": "^0.12.3"
+    "@react-navigation/native": "^5.8.10",
+    "expo": "^49.0.16",
+    "react": "18.2.0",
+    "react-native": "0.72.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/runtime": "^7.9.6",
-    "babel-plugin-module-resolver": "^4.0.0",
-    "babel-preset-expo": "^8.2.3",
-    "expo-cli": "^3.21.12"
+    "@babel/core": "^7.23.2",
+    "@babel/runtime": "^7.23.2",
+    "@expo/metro-config": "^0.10.7",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "babel-preset-expo": "^9.8.0",
+    "escape-string-regexp": "^4.0.0",
+    "metro-config": "^0.80.0"
   }
 }

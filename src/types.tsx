@@ -16,6 +16,7 @@ export type Scene = {
   color?: string;
 };
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export type ModalNavigationConfig = {};
 
 export type ModalNavigationOptions = Omit<
@@ -40,7 +41,7 @@ export type ModalNavigationHelpers = NavigationHelpers<
 
 export type ModalNavigationProp<
   ParamList extends ParamListBase,
-  RouteName extends keyof ParamList = string
+  RouteName extends keyof ParamList = string,
 > = NavigationProp<
   ParamList,
   RouteName,
@@ -52,7 +53,7 @@ export type ModalNavigationProp<
 
 export type ModalScreenProps<
   ParamList extends ParamListBase,
-  RouteName extends keyof ParamList = string
+  RouteName extends keyof ParamList = string,
 > = {
   navigation: ModalNavigationProp<ParamList, RouteName>;
   route: RouteProp<ParamList, RouteName>;

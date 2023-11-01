@@ -3,7 +3,7 @@ import { StyleSheet, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import {
   createModalNavigator,
-  ModalScreenProps,
+  type ModalScreenProps,
 } from 'react-navigation-native-modal';
 
 type ModalParamList = {
