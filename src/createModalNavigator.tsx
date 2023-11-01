@@ -16,7 +16,12 @@ import type {
   ModalNavigationOptions,
 } from './types';
 
-type Props = DefaultNavigatorOptions<ModalNavigationOptions> &
+type Props = DefaultNavigatorOptions<
+  ParamListBase,
+  StackNavigationState<ParamListBase>,
+  ModalNavigationOptions,
+  ModalNavigationEventMap
+> &
   StackRouterOptions &
   ModalNavigationConfig;
 
@@ -26,25 +31,28 @@ function ModalNavigator({
   screenOptions,
   ...rest
 }: Props) {
-  const { state, descriptors, navigation } = useNavigationBuilder<
-    StackNavigationState<ParamListBase>,
-    StackRouterOptions,
-    StackActionHelpers<ParamListBase>,
-    ModalNavigationOptions,
-    ModalNavigationEventMap
-  >(StackRouter, {
-    initialRouteName,
-    children,
-    screenOptions,
-  });
+  const { state, descriptors, navigation, NavigationContent } =
+    useNavigationBuilder<
+      StackNavigationState<ParamListBase>,
+      StackRouterOptions,
+      StackActionHelpers<ParamListBase>,
+      ModalNavigationOptions,
+      ModalNavigationEventMap
+    >(StackRouter, {
+      initialRouteName,
+      children,
+      screenOptions,
+    });
 
   return (
-    <ModalView
-      {...rest}
-      state={state}
-      descriptors={descriptors}
-      navigation={navigation}
-    />
+    <NavigationContent>
+      <ModalView
+        {...rest}
+        state={state}
+        descriptors={descriptors}
+        navigation={navigation}
+      />
+    </NavigationContent>
   );
 }
 

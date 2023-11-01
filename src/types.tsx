@@ -37,14 +37,17 @@ export type ModalNavigationEventMap = {
 export type ModalNavigationHelpers = NavigationHelpers<
   ParamListBase,
   ModalNavigationEventMap
->;
+> &
+  StackActionHelpers<ParamListBase>;
 
 export type ModalNavigationProp<
   ParamList extends ParamListBase,
-  RouteName extends keyof ParamList = string,
+  RouteName extends keyof ParamList = keyof ParamList,
+  NavigatorID extends string | undefined = undefined,
 > = NavigationProp<
   ParamList,
   RouteName,
+  NavigatorID,
   StackNavigationState<ParamList>,
   ModalNavigationOptions,
   ModalNavigationEventMap
@@ -53,17 +56,17 @@ export type ModalNavigationProp<
 
 export type ModalScreenProps<
   ParamList extends ParamListBase,
-  RouteName extends keyof ParamList = string,
+  RouteName extends keyof ParamList = keyof ParamList,
+  NavigatorID extends string | undefined = undefined,
 > = {
-  navigation: ModalNavigationProp<ParamList, RouteName>;
+  navigation: ModalNavigationProp<ParamList, RouteName, NavigatorID>;
   route: RouteProp<ParamList, RouteName>;
 };
 
 export type ModalDescriptor = Descriptor<
-  ParamListBase,
-  string,
-  StackNavigationState<ParamListBase>,
-  ModalNavigationOptions
+  ModalNavigationOptions,
+  ModalNavigationProp<ParamListBase>,
+  RouteProp<ParamListBase>
 >;
 
 export type ModalDescriptorMap = {

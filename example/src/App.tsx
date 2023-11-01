@@ -41,7 +41,7 @@ function Second({ navigation }: ModalScreenProps<ModalParamList, 'Second'>) {
   );
 }
 
-const Modal = createModalNavigator();
+const Modal = createModalNavigator<ModalParamList>();
 
 export function App() {
   return (
