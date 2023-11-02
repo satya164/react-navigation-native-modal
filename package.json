@@ -1,6 +1,6 @@
 {
   "name": "react-navigation-native-modal",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "React Navigation integration for React Native's Modal component",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
