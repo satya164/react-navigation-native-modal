@@ -1,5 +1,7 @@
 
 
+## [0.1.11](https://github.com/satya164/react-navigation-native-modal/compare/v0.1.10...v0.1.11) (2023-11-02)
+
 ## [0.1.10](https://github.com/satya164/react-navigation-native-modal/compare/v0.1.9...v0.1.10) (2023-11-02)
 
 ## [0.1.9](https://github.com/satya164/react-navigation-native-modal/compare/v0.1.6...v0.1.9) (2023-11-02)
