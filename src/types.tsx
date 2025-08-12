@@ -16,7 +16,7 @@ export type Scene = {
   color?: string;
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export type ModalNavigationConfig = {};
 
 export type ModalNavigationOptions = Omit<

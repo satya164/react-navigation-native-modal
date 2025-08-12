@@ -1,58 +1,83 @@
 import * as React from 'react';
 import { StyleSheet, View, Button } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import {
+  createStaticNavigation,
+  useNavigation,
+  type StaticParamList,
+} from '@react-navigation/native';
 import {
   createModalNavigator,
-  type ModalScreenProps,
+  type ModalNavigationProp,
 } from 'react-navigation-native-modal';
 
-type ModalParamList = {
-  Home: undefined;
-  First: undefined;
-  Second: undefined;
-};
+function Home() {
+  const navigation = useNavigation();
 
-function Home({ navigation }: ModalScreenProps<ModalParamList, 'Home'>) {
   return (
     <View style={styles.container}>
-      <Button title="Push First" onPress={() => navigation.push('First')} />
-      <Button title="Push Second" onPress={() => navigation.push('Second')} />
+      <Button
+        title="Go to First"
+        onPress={() => navigation.navigate('First')}
+      />
+      <Button
+        title="Go to Second"
+        onPress={() => navigation.navigate('Second')}
+      />
     </View>
   );
 }
 
-function First({ navigation }: ModalScreenProps<ModalParamList, 'First'>) {
+function First() {
+  const navigation = useNavigation<ModalNavigationProp<RootStackParamList>>();
+
   return (
     <View style={[styles.container, { backgroundColor: 'papayawhip' }]}>
-      <Button title="Push Second" onPress={() => navigation.push('Second')} />
+      <Button
+        title="Go to Second"
+        onPress={() => navigation.navigate('Second')}
+      />
       <Button title="Go back" onPress={() => navigation.goBack()} />
       <Button title="Pop to top" onPress={() => navigation.popToTop()} />
     </View>
   );
 }
 
-function Second({ navigation }: ModalScreenProps<ModalParamList, 'Second'>) {
+function Second() {
+  const navigation = useNavigation<ModalNavigationProp<RootStackParamList>>();
+
   return (
     <View style={[styles.container, { backgroundColor: 'lavender' }]}>
-      <Button title="Push First" onPress={() => navigation.push('First')} />
+      <Button
+        title="Go to First"
+        onPress={() => navigation.navigate('First')}
+      />
       <Button title="Go back" onPress={() => navigation.goBack()} />
       <Button title="Pop to top" onPress={() => navigation.popToTop()} />
     </View>
   );
 }
 
-const Modal = createModalNavigator<ModalParamList>();
+const Modal = createModalNavigator({
+  screens: {
+    Home: {
+      screen: Home,
+    },
+    First: {
+      screen: First,
+    },
+    Second: {
+      screen: Second,
+      options: {
+        presentationStyle: 'pageSheet',
+      },
+    },
+  },
+});
+
+const Navigation = createStaticNavigation(Modal);
 
 export function App() {
-  return (
-    <NavigationContainer>
-      <Modal.Navigator>
-        <Modal.Screen name="Home" component={Home} />
-        <Modal.Screen name="First" component={First} />
-        <Modal.Screen name="Second" component={Second} />
-      </Modal.Navigator>
-    </NavigationContainer>
-  );
+  return <Navigation />;
 }
 
 const styles = StyleSheet.create({
@@ -62,3 +87,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+type RootStackParamList = StaticParamList<typeof Modal>;
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace ReactNavigation {
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+    interface RootParamList extends RootStackParamList {}
+  }
+}

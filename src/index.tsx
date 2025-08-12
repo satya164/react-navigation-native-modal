@@ -1,12 +1,12 @@
 /**
  * Navigators
  */
-export { default as createModalNavigator } from './createModalNavigator';
+export { createModalNavigator } from './createModalNavigator';
 
 /**
  * Views
  */
-export { default as ModalView } from './ModalView';
+export { ModalView } from './ModalView';
 
 /**
  * Types

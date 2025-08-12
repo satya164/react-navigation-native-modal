@@ -35,7 +35,7 @@ jobs:
       - name: Run unit tests
         run: yarn test --maxWorkers=2 --coverage
 
-  build:
+  build-library:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

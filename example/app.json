@@ -1,11 +1,8 @@
 {
-  "name": "react-navigation-native-modal-example",
-  "displayName": "React Navigation Native Modal Example",
   "expo": {
     "name": "react-navigation-native-modal-example",
     "slug": "react-navigation-native-modal-example",
     "description": "Example app for react-navigation-native-modal",
-    "privacy": "public",
     "version": "1.0.0",
     "platforms": [
       "ios",

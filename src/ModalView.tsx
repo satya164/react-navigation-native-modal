@@ -24,11 +24,11 @@ type Props = ModalNavigationConfig & {
   descriptors: ModalDescriptorMap;
 };
 
-export default function ModalView({ state, navigation, descriptors }: Props) {
+export function ModalView({ state, navigation, descriptors }: Props) {
   return (
     <NavigationHelpersContext.Provider value={navigation}>
       <View style={styles.container}>
-        {state.routes.reduceRight<JSX.Element>(
+        {state.routes.reduceRight<React.JSX.Element>(
           (acc, route, index) => {
             const focused = index === state.index;
             const descriptor = descriptors[route.key];

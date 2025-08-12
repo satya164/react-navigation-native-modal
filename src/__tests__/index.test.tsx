@@ -8,7 +8,7 @@ import {
 import { createModalNavigator, type ModalScreenProps } from '../index';
 
 jest.useFakeTimers();
-it('renders a modal navigator with screens', async () => {
+test('renders a modal navigator with screens', async () => {
   const Test = ({ route, navigation }: ModalScreenProps<ParamListBase>) => (
     <View>
       <Text>Screen {route.name}</Text>
