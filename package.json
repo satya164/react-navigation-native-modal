@@ -27,7 +27,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
-    "release": "release-it",
+    "release": "release-it --only-version",
     "example": "yarn workspace react-navigation-native-modal-example"
   },
   "keywords": [

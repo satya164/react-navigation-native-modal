@@ -6,7 +6,7 @@
 
 React Navigation integration for React Native's Modal component. This navigator works like a Stack Navigator, but each screen is shown as a modal using the `Modal` component from React Native.
 
-> Currently the `presentationStyle` of `pageSheet` and `formSheet` are not usable on iOS because it's impossible to detect when they are closed via gesture. See https://github.com/facebook/react-native/issues/29319
+> Currently the `presentationStyle` of `pageSheet` and `formSheet` are not usable on iOS because it's impossible to detect when they are closed via gesture. See <https://github.com/facebook/react-native/issues/29319>
 
 ## Demo
 
@@ -21,6 +21,31 @@ npm install @react-navigation/native react-navigation-native-modal
 ## Usage
 
 To use this navigator, import it from `react-navigation-native-modal`:
+
+With static config API:
+
+```js
+import { createModalNavigator } from 'react-navigation-native-modal';
+
+const MyModal = createModalNavigator({
+  screens: {
+    Home: {
+      screen: HomeScreen,
+    },
+    Profile: {
+      screen: ProfileScreen,
+    },
+    Settings: {
+      screen: SettingsScreen,
+    },
+    Notification: {
+      screen: NotificationScreen,
+    }
+  }
+});
+```
+
+With dynamic config API:
 
 ```js
 import { createModalNavigator } from 'react-navigation-native-modal';
@@ -51,7 +76,18 @@ The first screen in the stack is always rendered as a normal screen and not as a
 
 All of the [props available on `Modal` component](https://reactnative.dev/docs/modal#props) can be specified in [options](https://reactnavigation.org/docs/screen-options) to configure the screens in the navigator, except `visible`, `onDismiss`, `onOrientationChange`, `onRequestClose` and `onShow`.
 
-Example:
+With static config API:
+
+```js
+Profile: {
+  screen: ProfileScreen,
+  options: {
+    animationType: 'fade',
+  },
+},
+```
+
+With dynamic config API:
 
 ```js
 <Modal.Screen
@@ -107,7 +143,7 @@ Pushes a new screen to top of the modal stack and navigate to it. The method acc
 - `params` - Screen params to merge into the destination route (found in the pushed screen through `route.params`).
 
 ```js
-navigation.push('Profile', { owner: 'Michaś' });
+navigation.push('Profile', { owner: 'Jane' });
 ```
 
 #### `pop`
@@ -116,6 +152,21 @@ Pops the current screen from the modal stack and navigates back to the previous 
 
 ```js
 navigation.pop();
+```
+
+### `popTo`
+
+Navigates back to a previous screen in the stack by popping screens after it. The method accepts the following arguments:
+
+- `name` - string - Name of the route to navigate to.
+- `params` - object - Screen params to pass to the destination route.
+- `options` - Options object containing the following properties:
+  - `merge` - boolean - Whether params should be merged with the existing route params, or replace them (when navigating to an existing screen). Defaults to `false`.
+
+If a matching screen is not found in the stack, this will pop the current screen and add a new screen with the specified name and params.
+
+```js
+navigation.popTo('Profile', { owner: 'Jane' });
 ```
 
 #### `popToTop`
