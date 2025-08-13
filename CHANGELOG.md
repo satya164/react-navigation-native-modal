@@ -1,5 +1,10 @@
 # Changelog
 
+## <small>0.3.1 (2025-08-13)</small>
+
+* ci: update release workflow ([5a0de06](https://github.com/satya164/react-navigation-native-modal/commit/5a0de06))
+* docs: document static config api ([ade7995](https://github.com/satya164/react-navigation-native-modal/commit/ade7995))
+
 ## 0.3.0 (2025-08-13)
 
 * feat: upgrade to react nvigation 7 ([87f4a54](https://github.com/satya164/react-navigation-native-modal/commit/87f4a54))
