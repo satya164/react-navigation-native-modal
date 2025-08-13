@@ -1,4 +1,8 @@
+# Changelog
 
+## 0.3.0 (2025-08-13)
+
+* feat: upgrade to react nvigation 7 ([87f4a54](https://github.com/satya164/react-navigation-native-modal/commit/87f4a54))
 
 ## [0.1.11](https://github.com/satya164/react-navigation-native-modal/compare/v0.1.10...v0.1.11) (2023-11-02)
 
